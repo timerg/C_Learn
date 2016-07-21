@@ -1,0 +1,4 @@
+ # exclude everything except directory dat
+*.dat
+/*.dSYM
+*.dSYM
