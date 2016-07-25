@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <string.h>
 
-// The Extra Credit is unfunished 
+// The Extra Credit is unfunished
 
 /** Our old friend die from ex17. */
 void die(const char *message)
@@ -24,6 +24,10 @@ void die(const char *message)
 // a typedef creates a fake type, in this
 // case for a function pointer
 typedef int (*compare_cb)(int a, int b);
+// Note that
+    // typedef int *compare_cb;   creates:
+        // type name: compare_cb
+        // new type: int*
 
 
 /**
@@ -34,6 +38,9 @@ typedef int (*compare_cb)(int a, int b);
     // and beaware that its type is "pointer func", can take two int and return an int
 
 int *bubble_sort(int *numbers, int count, compare_cb cmp)
+                                       // One can think this as
+                                       // \compare_cb(...) -> int* compare_cb(...)
+
 {
     int temp = 0;
     int i = 0;
@@ -87,6 +94,8 @@ int strange_order(int a, int b)
 void test_sorting(int *numbers, int count, compare_cb cmp)
 {
     int i = 0;
+
+    // int *bubble_sort(int *numbers, int count, compare_cb cmp)
     int *sorted = bubble_sort(numbers, count, cmp);
 
     if(!sorted) die("Failed to sort as requested.");
